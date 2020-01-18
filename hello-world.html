@@ -6,12 +6,20 @@
 </head>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        let location = location.href.replace(/^http/, 'ws').replace(/\/?$/, 'ws');
-        let webSocket = new WebSocket(location);
+        let loc = location.href.replace(/^http/, 'ws').replace(/\/?$/, '/socket');
+        let webSocket = new WebSocket(loc);
 
         let button = document.getElementById('btn');
         let body = document.getElementsByTagName('body')[0];
-    })
+
+        button.addEventListener('click', () => {
+            webSocket.send(document.getElementById('text').value);
+        });
+
+        webSocket.onmessage = event => {
+            body.insertAdjacentElement('beforeend', `<div>${event.data}</div>`);
+        }
+    });
 </script>
 <body>
     <h1>Hello World</h1>
