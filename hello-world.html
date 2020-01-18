@@ -17,7 +17,9 @@
         });
 
         webSocket.onmessage = event => {
-            body.insertAdjacentElement('beforeend', `<div>${event.data}</div>`);
+            let divElement = document.createElement('div');
+            divElement.innerHTML = event.data;
+            body.insertAdjacentElement('beforeend', divElement);
         }
     });
 </script>
