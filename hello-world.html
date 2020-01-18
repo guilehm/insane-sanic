@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Insane Sanic</title>
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let location = location.href.replace(/^http/, 'ws').replace(/\/?$/, 'ws');
+        let webSocket = new WebSocket(location);
+
+        let button = document.getElementById('btn');
+        let body = document.getElementsByTagName('body')[0];
+    })
+</script>
 <body>
     <h1>Hello World</h1>
     <label for="text">message:</label>
