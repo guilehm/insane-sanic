@@ -21,7 +21,7 @@ async def socket_route(request, ws):
         await broadcast(f'New user: {name}')
         while True:
             message = await ws.recv()
-            await broadcast(message)
+            await broadcast(f'{name} says: {message}')
     finally:
         connections.remove(ws)
         if name is not None:
