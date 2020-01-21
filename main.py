@@ -1,3 +1,5 @@
+import os
+
 from sanic import Sanic
 from sanic.websocket import WebSocketProtocol
 
@@ -5,6 +7,8 @@ app = Sanic(__name__)
 app.static('/', 'hello-world.html')
 
 connections = set()
+
+PORT = os.getenv('PORT', 8000)
 
 
 async def broadcast(message):
@@ -28,4 +32,4 @@ async def socket_route(request, ws):
             await broadcast(f'{name} lef the chat')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, protocol=WebSocketProtocol)
+    app.run(host="0.0.0.0", port=PORT, protocol=WebSocketProtocol)
